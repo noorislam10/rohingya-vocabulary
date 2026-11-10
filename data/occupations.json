@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "english": "Doctor",
+    "rohingyalish": ["Dattor"],
+    "hanifi": "",
+    "burmese": "ဆရာဝန်",
+    "meaning": "A person who treats sick people.",
+    "example": "The doctor treats patients."
+  },
+  {
+    "id": 2,
+    "english": "Teacher",
+    "rohingyalish": ["Maishtor"],
+    "hanifi": "",
+    "burmese": "",
+    "meaning": "A person who teaches students.",
+    "example": "My teacher explains English."
+  },
+  {
+    "id": 3,
+    "english": "Farmer",
+    "rohingyalish": ["Chacha", "Aal goroya"],
+    "hanifi": "",
+    "burmese": "",
+    "meaning": "A person who grows crops or raises animals.",
+    "example": "The farmer grows rice."
+  },
+  {
+    "id": 4,
+    "english": "Driver",
+    "rohingyalish": ["Soloya", "Garir driver"],
+    "hanifi": "",
+    "burmese": "",
+    "meaning": "A person who drives a vehicle.",
+    "example": "My father is a bus driver."
+  },
+  {
+    "id": 5,
+    "english": "Nurse",
+    "rohingyalish": ["Maya fuwa dattor", "Naas"],
+    "hanifi": "",
+    "burmese": "",
+    "meaning": "A person who cares for sick people.",
+    "example": "The nurse helps the doctor."
+  },
+  {
+    "id": 6,
+    "english": "Police Officer",
+    "rohingyalish": ["Folishor Officer"],
+    "hanifi": "",
+    "burmese": "",
+    "meaning": "A person who protects people and enforces the law.",
+    "example": "The police officer helps people."
+  },
+  {
+    "id": 7,
+    "english": "Carpenter",
+    "rohingyalish": ["Misthiri"],
+    "hanifi": "",
+    "burmese": "",
+    "meaning": "A person who makes or repairs wooden objects.",
+    "example": "The carpenter makes a table."
+  },
+  {
+    "id": 8,
+    "english": "Tailor",
+    "rohingyalish": ["Holiba"],
+    "hanifi": "",
+    "burmese": "",
+    "meaning": "A person who makes or repairs clothes.",
+    "example": "The tailor sews my shirt."
+  },
+  {
+    "id": 9,
+    "english": "Fisherman",
+    "rohingyalish": ["Zailla", "Maas soya"],
+    "hanifi": "",
+    "burmese": "",
+    "meaning": "A person who catches fish for a living.",
+    "example": "The fisherman catches fish."
+  },
+  {
+    "id": 10,
+    "english": "Engineer",
+    "rohingyalish": ["Engineer"],
+    "hanifi": "",
+    "burmese": "",
+    "meaning": "A person who designs or builds machines, structures or systems.",
+    "example": "The engineer designs a bridge."
+  }
+]
