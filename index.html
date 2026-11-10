@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#123b70">
 <title>Rohingya Vocabulary</title>
+
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:#f3f6fb;color:#172b45}
@@ -12,21 +13,24 @@ header{background:#123b70;color:white;padding:25px 20px}
 header h1{margin:0;font-size:25px}
 header p{margin:7px 0 0;color:#dce9ff}
 main{max-width:650px;margin:auto;padding:20px}
-.welcome{background:white;padding:22px;border-radius:16px;margin-bottom:20px}
+.welcome,.details{background:white;padding:22px;border-radius:16px;margin-bottom:20px}
 h2{margin-top:0}
 input{width:100%;padding:14px;border:1px solid #ccd5e1;border-radius:10px;font-size:16px;margin:12px 0}
-.word{background:white;padding:17px;border-radius:12px;margin:10px 0;cursor:pointer;border:1px solid #e0e6ef}
+.word{display:flex;align-items:center;gap:14px;background:white;padding:12px;border-radius:12px;margin:10px 0;cursor:pointer;border:1px solid #e0e6ef}
+.word img{width:65px;height:65px;object-fit:cover;border-radius:10px}
 .word h3{margin:0 0 6px;color:#123b70}
-.word p{margin:0;color:#637187}
-.details{background:white;padding:20px;border-radius:14px;margin-top:15px}
-.translation{padding:12px 0;border-bottom:1px solid #e5eaf0}
+.word p{margin:0;color:#637187;font-size:14px}
+.details{margin-top:15px}
+.hero-image{width:100%;height:250px;object-fit:cover;border-radius:13px;margin:15px 0}
+.translation{padding:13px 0;border-bottom:1px solid #e5eaf0}
 .translation:last-child{border:0}
 .label{font-size:13px;color:#64748b}
-.value{font-size:17px;margin-top:5px}
+.value{font-size:17px;margin-top:5px;line-height:1.5}
 button{background:#123b70;color:white;border:0;padding:12px 18px;border-radius:9px;font-size:15px;cursor:pointer}
 footer{text-align:center;color:#718096;padding:25px;font-size:13px}
 </style>
 </head>
+
 <body>
 <header>
 <h1>Rohingya Vocabulary</h1>
@@ -34,6 +38,7 @@ footer{text-align:center;color:#718096;padding:25px;font-size:13px}
 </header>
 
 <main>
+
 <section class="welcome">
 <h2>Welcome, Learner!</h2>
 <p>Build your English vocabulary, one word at a time.</p>
@@ -43,8 +48,10 @@ footer{text-align:center;color:#718096;padding:25px;font-size:13px}
 <section id="home">
 <h2>Vocabulary Categories</h2>
 <div class="word" onclick="loadWords()">
+<div>
 <h3>Occupations</h3>
 <p>Learn words about jobs and professions.</p>
+</div>
 </div>
 </section>
 
@@ -55,7 +62,8 @@ footer{text-align:center;color:#718096;padding:25px;font-size:13px}
 <div id="wordList">Loading words...</div>
 </section>
 
-<section id="details" hidden></section>
+<section id="details" class="details" hidden></section>
+
 </main>
 
 <footer>Rohingya Vocabulary · Learn • Practice • Grow</footer>
@@ -77,13 +85,13 @@ document.getElementById("wordList").textContent="Loading words...";
 
 try{
 const response=await fetch("data/occupations.json");
-if(!response.ok) throw new Error("Could not find the vocabulary file.");
+if(!response.ok) throw new Error("Could not find vocabulary file.");
 const data=await response.json();
 words=Array.isArray(data)?data:(data.words||[]);
-if(!words.length) throw new Error("No words found in the file.");
+if(!words.length) throw new Error("No words found.");
 displayWords(words);
 }catch(error){
-document.getElementById("wordList").textContent=error.message+" Please check the data file.";
+document.getElementById("wordList").textContent=error.message;
 }
 }
 
@@ -93,21 +101,34 @@ return w.english||w.word||w.title||"English word";
 
 function getRohingyalish(w){
 const t=w.translations||{};
-const r=w.rohingyalish||t.rohingyalish||w.rohingya_latin||"";
+const r=w.rohingyalish||t.rohingyalish||"";
 return Array.isArray(r)?r.join(", "):r;
 }
 
 function displayWords(list){
 const area=document.getElementById("wordList");
 area.innerHTML="";
-list.forEach((w)=>{
+
+list.forEach(w=>{
 const item=document.createElement("div");
 item.className="word";
+
+if(w.image){
+const img=document.createElement("img");
+img.src=w.image;
+img.alt=getEnglish(w);
+item.appendChild(img);
+}
+
+const info=document.createElement("div");
 const title=document.createElement("h3");
 title.textContent=getEnglish(w);
+
 const subtitle=document.createElement("p");
 subtitle.textContent=getRohingyalish(w);
-item.append(title,subtitle);
+
+info.append(title,subtitle);
+item.appendChild(info);
 item.onclick=()=>showDetails(w);
 area.appendChild(item);
 });
@@ -128,38 +149,48 @@ area.innerHTML="";
 
 const back=document.createElement("button");
 back.textContent="← Back to Occupations";
-back.onclick=()=>{area.hidden=true;document.getElementById("vocabulary").hidden=false;};
+back.onclick=()=>{
+area.hidden=true;
+document.getElementById("vocabulary").hidden=false;
+};
 
 const title=document.createElement("h2");
 title.textContent=getEnglish(w);
 area.append(back,title);
 
+if(w.image){
+const img=document.createElement("img");
+img.src=w.image;
+img.alt=getEnglish(w);
+img.className="hero-image";
+area.appendChild(img);
+}
+
 const t=w.translations||{};
-const rohingyalish=getRohingyalish(w);
-const hanifi=w.hanifi||t.hanifi||"Not added yet";
-const burmese=w.burmese||t.burmese||"Not added yet";
-const definition=w.definition||"";
-const example=w.example||"";
 
 function add(label,value){
 const block=document.createElement("div");
 block.className="translation";
+
 const name=document.createElement("div");
 name.className="label";
 name.textContent=label;
+
 const text=document.createElement("div");
 text.className="value";
 text.textContent=value||"Not added yet";
+
 block.append(name,text);
 area.appendChild(block);
 }
 
-add("ROHINGYA HANIFI",hanifi);
-add("ROHINGYALISH",rohingyalish);
-add("BURMESE",burmese);
-add("ENGLISH DEFINITION",definition);
-add("EXAMPLE SENTENCE",example);
+add("ROHINGYA HANIFI",w.hanifi||t.hanifi);
+add("ROHINGYALISH",getRohingyalish(w));
+add("BURMESE",w.burmese||t.burmese);
+add("ENGLISH DEFINITION",w.meaning||w.definition);
+add("EXAMPLE SENTENCE",w.example);
 }
 </script>
+
 </body>
 </html>
