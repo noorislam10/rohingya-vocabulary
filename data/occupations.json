@@ -1,8 +1,9 @@
 [
   {
     "id": 1,
-    "english": "Doctor","image":"image": "images/doctor.png",,
-    "rohingyalish": ["Dattor"],
+    "english": "Doctor",
+"image": "images/doctor.png",
+"rohingyalish": ["Dattor"],
     "hanifi": "",
     "burmese": "ဆရာဝန်",
     "meaning": "A person who treats sick people.",
