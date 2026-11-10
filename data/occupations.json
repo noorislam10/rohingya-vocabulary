@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "english": "Doctor",
+    "english": "Doctor","image": "images/Doctor%20png.png",
     "rohingyalish": ["Dattor"],
     "hanifi": "",
     "burmese": "ဆရာဝန်",
